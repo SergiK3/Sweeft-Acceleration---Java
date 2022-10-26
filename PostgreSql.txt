@@ -1,0 +1,30 @@
+CREATE TABLE school.teacher(
+	first_name VARCHAR(30) NOT NULL,
+	last_name VARCHAR(30) Not NULL,
+	gender VARCHAR(10) NOT NULL,
+	subject VARCHAR(20) NOT NULL,
+	id SERIAL PRIMARY KEY
+);
+
+CREATE TABLE school.student(
+	first_name VARCHAR(30) NOT NULL,
+	last_name VARCHAR(30) NOT NULL,
+	class SMALLINT NOT NULL,
+	gender VARCHAR(10) NOT NULL,
+	id SERIAL PRIMARY KEY
+);
+
+CREATE TABLE school.teacher_student(
+	student_id INTEGER REFERENCES school.student(id),
+	teacher_id INTEGER REFERENCES school.teacher(id),
+	id SERIAL PRIMARY KEY
+	
+);
+
+//es dawers romeli studenti romel maswavlebeltan aris
+
+SELECT student.first_name ,subject,teacher.first_name
+FROM school.student
+JOIN school.teacher_student ON teacher_student.student_id = student.id
+JOIN school.teacher ON teacher_student.id = teacher.id
+
